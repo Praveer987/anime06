@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0c0c12" />
+    <meta name="description" content="Discover your next favorite anime on Watch Anime 06. A solo project by Praveer Prasoon, a 14-year-old tech enthusiast from India." />
+    <meta name="author" content="Praveer Prasoon" />
+    <title>Watch Anime 06 | Your Next Favorite Story</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#catalog">Skip to anime</a>
+    <header class="site-header" id="siteHeader">
+      <div class="container header-inner">
+        <a class="brand" href="#home" aria-label="Watch Anime 06 home">
+          <span class="brand-icon"><i data-icon="play" data-size="14" data-fill="1"></i></span>
+          <span>watch anime <b>06</b></span>
+        </a>
+        <nav aria-label="Main navigation">
+          <button class="nav-active" id="browseButton" data-view="browse" aria-pressed="true">Explore</button>
+          <button id="listButton" data-view="saved" aria-pressed="false">My list<span id="savedCount" class="saved-count" hidden></span></button>
+          <a href="#creator">The creator</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="mainContent">
+      <section class="hero" id="home" aria-labelledby="heroTitle">
+        <div class="hero-art" aria-hidden="true"></div>
+        <div class="container hero-inner">
+          <div class="hero-content">
+            <h1 id="heroTitle">Watch Anime <span>06.</span></h1>
+            <p>Your next favorite story is one search away.</p>
+            <div class="hero-actions">
+              <button class="button button-primary" id="exploreButton">Explore anime <i data-icon="arrowRight" data-size="17"></i></button>
+              <button class="button button-quiet" id="randomButton"><i data-icon="shuffle" data-size="17"></i> Surprise me</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="catalog container" id="catalog" aria-labelledby="catalogTitle">
+        <div class="section-heading">
+          <h2 id="catalogTitle">Find your next favorite.</h2>
+          <span class="catalog-count" id="catalogCount">Live anime catalog</span>
+        </div>
+        <form class="catalog-tools" id="searchForm" role="search">
+          <div class="search-field">
+            <i data-icon="search" data-size="19"></i>
+            <input id="searchInput" type="search" placeholder="Search any anime..." aria-label="Search the full anime catalog" autocomplete="off" maxlength="120" />
+            <button id="clearSearch" type="button" aria-label="Clear search" hidden><i data-icon="x" data-size="16"></i></button>
+            <kbd aria-hidden="true">/</kbd>
+          </div>
+          <label class="select-field"><span class="sr-only">Filter by genre</span><select id="genreSelect"><option value="">All genres</option></select><i data-icon="chevronDown" data-size="15"></i></label>
+          <label class="select-field"><span class="sr-only">Sort anime</span><select id="sortSelect"><option value="POPULARITY_DESC">Most popular</option><option value="SCORE_DESC">Top rated</option><option value="START_DATE_DESC">Newest</option><option value="TITLE_ENGLISH">A to Z</option></select><i data-icon="chevronDown" data-size="15"></i></label>
+        </form>
+        <div class="catalog-status" role="status" aria-live="polite" aria-atomic="true">
+          <span id="statusText">Search the whole catalog, not just this page.</span>
+          <button class="text-button" id="retryButton" hidden>Try live catalog again <i data-icon="arrowRight" data-size="13"></i></button>
+        </div>
+        <div class="anime-grid" id="animeGrid" aria-busy="false"></div>
+        <div class="empty-state" id="emptyState" hidden>
+          <i data-icon="search" data-size="28"></i>
+          <h3 id="emptyTitle">Nothing here yet.</h3>
+          <p id="emptyText">Try a different title or genre.</p>
+          <button class="button button-quiet" id="resetButton">Explore anime <i data-icon="arrowRight" data-size="16"></i></button>
+        </div>
+        <nav class="pagination" id="pagination" aria-label="Anime catalog pages" hidden>
+          <button class="page-button" id="previousPage"><i data-icon="arrowLeft" data-size="16"></i> Previous</button>
+          <span id="pageLabel">Page 1</span>
+          <button class="page-button" id="nextPage">Next <i data-icon="arrowRight" data-size="16"></i></button>
+        </nav>
+        <details class="catalog-info">
+          <summary>About the catalog</summary>
+          <p>Search and pagination support up to <strong>100,000 catalog entries</strong>, loaded only when you browse. The actual number of anime depends on AniList's database, which includes series, films, seasons and specials. This is a capacity limit, not a claim that 100,000 unique anime or playable streams are available.</p>
+        </details>
+      </section>
+
+      <section class="creator container" id="creator" aria-labelledby="creatorTitle">
+        <p class="eyebrow">A SOLO PROJECT</p>
+        <h2 id="creatorTitle">Made by <span>Praveer Prasoon.</span></h2>
+        <p class="creator-copy">Built alone by Praveer Prasoon, a 14-year-old boy who is interested in technology and lives in India.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <a class="footer-brand" href="#home">watch anime <span>06</span></a>
+        <p>A personal project by Praveer Prasoon. Anime data by <a href="https://anilist.co" target="_blank" rel="noopener noreferrer">AniList</a>.</p>
+      </div>
+    </footer>
+
+    <div class="modal-backdrop" id="modal" hidden>
+      <section class="detail-modal" id="modalBody" role="dialog" aria-modal="true" aria-label="Anime details" tabindex="-1"></section>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <noscript><p class="noscript-notice">Enable JavaScript to search the anime catalog and save your favorites.</p></noscript>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
